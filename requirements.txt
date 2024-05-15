@@ -9,3 +9,12 @@ python-dotenv
 streamlit
 watchdog
 IPython
+streamlit
+pytube
+pydub
+google-cloud-speech
+google-cloud-aiplatform
+cohere
+weaviate-client
+openai
+stability-sdk

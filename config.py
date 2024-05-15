@@ -1,23 +1,10 @@
-from dotenv import load_dotenv
 import os
-from llama_index.core.settings import Settings
-from llama_index.llms.openai import OpenAI
-from llama_index.embeddings.openai import OpenAIEmbedding
 
-class Configuration:
-    def __init__(self):
-        print("Loading environment variables...")
-        load_dotenv()  # Loads the environment variables from the .env file.
-        self.openai_api_key = os.getenv('OPENAI_API_KEY')  # Retrieves the OpenAI API key from the environment.
-
-        if not self.openai_api_key:
-            print("ERROR: OpenAI API key not found.")  # Error handling if API key is not found.
-
-        self.embed_model = OpenAIEmbedding(model="text-embedding-3-small", dimensions=256)  # Setting up the embedding model.
-        self.llm = OpenAI(api_key=self.openai_api_key)  # Initializing the OpenAI model with the API key.
-        self.configure()  # Apply the configurations to the settings.
-
-    def configure(self):
-        print("Configuring settings...")
-        Settings.llm = self.llm  # Sets the global LlamaIndex settings for the language model.
-        Settings.embed_model = self.embed_model  # Sets the global embedding model.
+COHERE_API_KEY = os.getenv('COHERE_API_KEY', 'your_cohere_api_key_here')
+GOOGLE_CREDENTIALS_PATH = 'credentials/google_credentials.json'
+WEAVIATE_URL = os.getenv('WEAVIATE_URL', 'http://localhost:8080')
+WEAVIATE_API_KEY = os.getenv('WEAVIATE_API_KEY', 'your_weaviate_api_key_here')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'your_openai_api_key_here')
+STABILITY_API_KEY = os.getenv('STABILITY_API_KEY', 'your_stability_api_key_here')
+GOOGLE_PROJECT_ID = os.getenv('GOOGLE_PROJECT_ID', 'your_google_project_id_here')
+GOOGLE_LOCATION = os.getenv('GOOGLE_LOCATION', 'your_google_location_here')
