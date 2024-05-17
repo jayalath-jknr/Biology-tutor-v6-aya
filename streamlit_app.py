@@ -1,20 +1,25 @@
 import streamlit as st
-from utils.youtube_utils import download_youtube_video
-from utils.audio_utils import extract_audio_from_video
-from utils.transcription_utils import transcribe_audio
-from utils.subtitle_utils import generate_subtitles_with_aya, generate_subtitles_with_gpt4, generate_subtitles_with_vertex_ai
-from utils.vector_db_utils import store_transcription_in_weaviate
+from streamlit_option_menu import option_menu
+from pages import home, subtitle_generator, biology_tutor
 
-st.title("AI-based Biology Tutor Application")
-st.write("""
-Welcome to the AI-based Biology Tutor Application!
+st.set_page_config(page_title="AI-based Biology Tutor Application", layout="wide")
 
-This application is designed to help students learn and understand various biology concepts through advanced AI technology.
+def main():
+    with st.sidebar:
+        selected = option_menu(
+            "Main Menu",
+            ["Home", "Subtitle Generator", "Biology Tutor"],
+            icons=["house", "video", "book"],
+            menu_icon="cast",
+            default_index=0,
+        )
 
-**Features:**
-- **Subtitle Generation for Biology Videos**: Generate subtitles for biology-related YouTube videos.
-- **Biology Tutor**: Ask questions about biology concepts and get detailed explanations.
-- **Study Material Generation**: Generate comprehensive study materials for different biology topics.
+    if selected == "Home":
+        home.home()
+    elif selected == "Subtitle Generator":
+        subtitle_generator.subtitle_generator()
+    elif selected == "Biology Tutor":
+        biology_tutor.biology_tutor()
 
-Use the navigation menu to explore different functionalities.
-""")
+if __name__ == "__main__":
+    main()

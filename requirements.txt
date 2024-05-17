@@ -18,3 +18,4 @@ cohere
 weaviate-client
 openai
 stability-sdk
+streamlit-option-menu
